@@ -1,0 +1,1 @@
+$x = Get-NetAdapter | Group-Object -AsHashtable -Property ifIndex; Get-DnsClientServerAddress -AddressFamily ipv4 | where {$x[$_.InterfaceIndex].Status -eq "Up"} | Select-Object -ExpandProperty ServerAddresses | foreach {"nameserver " + $_}
